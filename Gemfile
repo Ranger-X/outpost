@@ -1,16 +1,18 @@
-source :rubygems
+source 'https://rubygems.org'
+
+gem 'net-ping'
+gem 'redis', '~>3.2'
 
 group :test do
+  gem 'rake'
   gem 'mail',     :require => false
-  gem 'net-ping', :require => false
+  #gem 'net-ping', :require => false
   gem 'tinder',   :require => false
 
   gem 'thin'
   gem 'rack'
   gem 'sinatra'
 
-  gem 'minitest', '~> 2.0.2', :platforms => :ruby_18
-  gem 'ruby-debug',           :platforms => :ruby_18
-
-  gem 'ruby-debug19', :platforms => :ruby_19
+  gem 'minitest', '~> 2.0.2' #:platforms => :ruby_18
+  gem 'byebug'
 end
