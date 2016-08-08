@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'net-ping'
 gem 'redis', '~>3.2'
+gem 'mongo', '~>2.2'
 
 group :test do
   gem 'rake'
