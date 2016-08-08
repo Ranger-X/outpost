@@ -23,6 +23,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-ping (1.7.8)
+    net-telnet (0.1.1)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -61,6 +62,7 @@ DEPENDENCIES
   minitest (~> 2.0.2)
   mongo (~> 2.2)
   net-ping
+  net-telnet
   rack
   rake
   redis (~> 3.2)

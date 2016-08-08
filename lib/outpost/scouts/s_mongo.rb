@@ -23,15 +23,17 @@ module Outpost
       # Runs the scout, connecting to the host and getting the response code,
       # body and time.
       def execute
-        previous_time = Time.now
+        Mongo::Logger.logger.level = ::Logger::FATAL
+
         client = Mongo::Client.new(@url)
+        previous_time = Time.now
         @response_body = client.database.collection_names.join(' ')
 
         @response_time = (Time.now - previous_time) * 1000 # Miliseconds
         @response_code = 1
       rescue Exception => e
         @response_code = @response_time = nil
-        @response_body = e.message
+        @response_body = "Mongo exception: #{e.message}"
       end
     end
   end
