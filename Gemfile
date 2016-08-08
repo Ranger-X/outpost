@@ -4,6 +4,7 @@ gem 'net-ping'
 gem 'redis', '~>3.2'
 gem 'mongo', '~>2.2'
 gem 'net-telnet'
+gem 'ruby-kafka'
 
 group :test do
   gem 'rake'

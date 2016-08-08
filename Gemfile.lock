@@ -29,6 +29,7 @@ GEM
       rack
     rake (11.2.2)
     redis (3.3.1)
+    ruby-kafka (0.3.12)
     simple_oauth (0.1.9)
     sinatra (1.4.7)
       rack (~> 1.5)
@@ -66,6 +67,7 @@ DEPENDENCIES
   rack
   rake
   redis (~> 3.2)
+  ruby-kafka
   sinatra
   thin
   tinder

@@ -1,4 +1,10 @@
-require 'mongo'
+begin
+  require 'mongo'
+rescue LoadError => e
+  puts "Please install mongo gem: gem install mongo".
+  raise
+end
+
 require 'outpost/expectations'
 
 module Outpost
