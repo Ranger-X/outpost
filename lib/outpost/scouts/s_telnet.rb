@@ -26,11 +26,14 @@ module Outpost
       # @option options [String] :host The host that will be "pinged".
       # @option options [Number] :port The port that will be checked.
       # @option options [Number] :timeout The timeout of connect attempt. Default: 3s
+      # @option options [String] :prompt The prompt which must be returned by telneted service.
+      # @option options [String] :command The command to send to service.
       def setup(options)
         @host     = options[:host]
         @port     = options[:port]
         @timeout  = options[:timeout] || 3
         @prompt   = options[:prompt] || '[$%#>] \z'
+        @command  = options[:command]
       end
 
       # Runs the scout, pinging the host and getting the duration.
@@ -47,8 +50,10 @@ module Outpost
             "Telnetmode" => false,
             "Prompt"     => prompt,
         )
-        telnet.cmd("test") { |c| @response_body = c }
+
+        telnet.cmd(@command) { |c| @response_body = c } if @command
         telnet.close
+
         @response_time = (Time.now - previous_time) * 1000 # Miliseconds
       rescue Exception => e
         @response_time = nil
