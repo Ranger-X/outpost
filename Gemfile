@@ -6,6 +6,7 @@ gem 'mongo', '~>2.2'
 gem 'net-telnet'
 gem 'ruby-kafka'
 gem 'pg'
+gem 'thrift_client'
 
 group :test do
   gem 'rake'
