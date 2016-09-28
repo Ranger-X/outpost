@@ -1,5 +1,5 @@
 begin
-  require 'net/ping/external'
+  require 'net/ping'
 rescue LoadError => e
   puts "Please install net-ping gem: gem install net-ping".
   raise
@@ -33,7 +33,7 @@ module Outpost
 
       # Runs the scout, pinging the host and getting the duration.
       def execute
-        if @pinger.ping(@host)
+        if @pinger.ping?(@host)
           # Miliseconds
           @response_time = @pinger.duration * 1000
         end
