@@ -1,5 +1,5 @@
 begin
-  require 'net/ping'
+  require 'net/ping/external'
 rescue LoadError => e
   puts "Please install net-ping gem: gem install net-ping".
   raise
