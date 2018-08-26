@@ -15,20 +15,29 @@ module Outpost
 
       # Configure the scout with given options.
       # @param [Hash] Options to setup the scout
+      # @option options [String] :url The connection url in form 'redis://:p4ssw0rd@10.0.1.1:6380/15'
       # @option options [String] :host The host that will be connected to.
       # @option options [Number] :port The port that will be used to.
       # @option options [Number] :db The database.
+      # @option options [String] :password Auth password for database.
+      # @option options [Integer] :timeout The connection timeout.
       def setup(options)
-        @host = options[:host]
-        @port = options[:port] || 6379
-        @db   = options[:db] || 1
+        @url      = options[:url]
+        @host     = options[:host]
+        @port     = options[:port] || 6379
+        @db       = options[:db] || 1
+        @password = options[:password]
+        @timeout  = options[:timeout] || 1
       end
 
       # Runs the scout, connecting to the host and getting the response code,
       # body and time.
       def execute
         previous_time = Time.now
-        redis = Redis.new(:host => @host, :port => @port, :db => @db, :timeout => 1)
+
+        connection_string = @url.nil? ? {:host => @host, :port => @port, :db => @db, :timeout => @timeout.to_i, :password => @password } : { :url => @url, :timeout => @timeout.to_i }
+
+        redis = Redis.new(**connection_string)
         redis.ping
         @response_time = (Time.now - previous_time) * 1000 # Miliseconds
         @response_code = 1
